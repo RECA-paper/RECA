@@ -1,7 +1,9 @@
 # RECA
 This is the repository for the code and data of paper: RECA: Related Tables Enhanced Column Semantic Type Annotation Framework.
 
+
 ![Overview of RECA](./imgs/pipeline_updated.drawio.png)
+
 
 In order to reproduce the results on Semtab2019 dataset, please go through the following steps:
 1. Download the pre-trained models and pre-processed data, please check the instructions in [checkpoints](https://github.com/RECA-paper/RECA/tree/main/Semtab/checkpoints) and [jsonl_data](https://github.com/RECA-paper/RECA/tree/main/Semtab/data/jsonl_data) for details. 
