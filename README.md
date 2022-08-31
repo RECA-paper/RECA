@@ -12,6 +12,14 @@ $ cd RECA
 $ pip install -r requirements.txt 
 ```
 
+If you are using Anaconda, you can create a virtual environment and install all the packages:
+
+```console
+$ conda create --name RECA python=3.7
+$ conda activate RECA
+$ pip install -r requirements.txt
+```
+
 ## Reproduce the results
 
 In order to reproduce the results on Semtab2019 dataset, please go through the following steps:
