@@ -68,17 +68,5 @@ def compute_jaccard(pathways, cur_path="../data/webtables/K4/"): # compute the j
 
 if __name__ == '__main__':
     pathways = ["../data/webtables/K0/", "../data/webtables/K1/", "../data/webtables/K2/", "../data/webtables/K3/", "../data/webtables/K4/"]
-
-    jaccard_dict = compute_jaccard(pathways)
-
-    updated_jaccard_dict = {}
-    for key in tqdm(jaccard_dict.keys()):
-        updated_jaccard_dict[key] = []
-        for value in jaccard_dict[key]:
-            updated_jaccard_dict[key].append(value[0])
-        output_dict = {}
-        output_dict['filename'] = key
-        output_dict['jaccard_tables'] = updated_jaccard_dict
-        with open('../data/jaccard/'+key[:-3]+'json', 'w') as f:
-            json.dump(output_dict, f)
-
+    for round in range(5):
+        compute_jaccard(pathways, cur_path="../data/webtables/K"+str(round)+"/")
