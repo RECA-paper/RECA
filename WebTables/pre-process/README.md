@@ -5,8 +5,6 @@
 2. Run [compute_jaccard.py](https://github.com/RECA-paper/RECA/blob/main/WebTables/pre-process/compute_jaccard.py) to compute the jaccard distance between any two tables.
 3. Run [pre-process-webtables.py](https://github.com/RECA-paper/RECA/blob/main/WebTables/pre-process/pre-process-webtables.py) to generate the pre-processed json files.
 4. Run [webtables-datasets.py](https://github.com/RECA-paper/RECA/blob/main/WebTables/pre-process/webtables-datasets.py) to generate tokenized input for RECA.
-5. Run [RECA-webtables-train.py](https://github.com/RECA-paper/RECA/blob/main/WebTables/experiment/RECA-webtables-train.py) in the experiment folder to star training.
 
 ## Start from tokenized data
 1. Download the pre-processed tokenized data from this [link](https://drive.google.com/file/d/1wo6QMjUdWsb6-5kczqZMy_89gstw7BfV/view?usp=sharing), unzip, and place in the the [tokenized_data](https://github.com/RECA-paper/RECA/tree/main/WebTables/data/tokenized_data) folder.
-2. Run [RECA-webtables-train.py](https://github.com/RECA-paper/RECA/blob/main/WebTables/experiment/RECA-webtables-train.py) in the experiment folder to star training.
