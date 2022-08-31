@@ -30,6 +30,6 @@ In order to reproduce the results on Semtab2019 dataset, please go through the f
 
 In order to reproduce the results on WebTables dataset, please go through the following steps:
 1. Remove the init files in all the directories (they are created for placeholding purpose on github).
-2. Download the tokenized data or raw dataset, please check the instructions in [pre-process](https://github.com/RECA-paper/RECA/tree/main/Semtab/pre-process).
-3. Pre-process the raw dataset, please follow the steps described in 'Start from scrtach' in [pre-process](https://github.com/RECA-paper/RECA/tree/main/Semtab/pre-process).
+2. Download the tokenized data or raw dataset, please check the instructions in [pre-process](https://github.com/RECA-paper/RECA/tree/main/WebTables/pre-process).
+3. Pre-process the raw dataset, please follow the steps described in 'Start from scrtach' in [pre-process](https://github.com/RECA-paper/RECA/tree/main/WebTables/pre-process).
 4. Run the experiment file [RECA-webtables-train.py](https://github.com/RECA-paper/RECA/blob/main/WebTables/experiment/RECA-webtables-train.py) in the [experiment](https://github.com/RECA-paper/RECA/tree/main/WebTables/experiment) folder to start training.
