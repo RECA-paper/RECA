@@ -4,6 +4,15 @@ This is the repository for the code and data of paper: RECA: Related Tables Enha
 
 ![Overview of RECA](./imgs/pipeline_updated.drawio.png)
 
+## Install
+
+```console
+$ git clone [link to repo]
+$ cd RECA
+$ pip install -r requirements.txt 
+```
+
+## Reproduce the results
 
 In order to reproduce the results on Semtab2019 dataset, please go through the following steps:
 1. Remove the init files in all the directories (they are created for placeholding purpose on github).
