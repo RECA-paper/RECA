@@ -33,3 +33,45 @@ In order to reproduce the results on WebTables dataset, please go through the fo
 2. Download the tokenized data or raw dataset, please check the instructions in [pre-process](https://github.com/RECA-paper/RECA/tree/main/WebTables/pre-process).
 3. Pre-process the raw dataset, please follow the steps described in 'Start from scrtach' in [pre-process](https://github.com/RECA-paper/RECA/tree/main/WebTables/pre-process).
 4. Run the experiment file [RECA-webtables-train.py](https://github.com/RECA-paper/RECA/blob/main/WebTables/experiment/RECA-webtables-train.py) in the [experiment](https://github.com/RECA-paper/RECA/tree/main/WebTables/experiment) folder to start training.
+
+## Repository Structure
+```
+RECA/
+└── Semtab
+    ├── checkpoints 
+    ├── data 
+        ├── distance-files (store the edit distances)
+        ├── json (store the base json files that contain the table content)
+        ├── jsonl_data (store the pre-process table data)
+        ├── raw_data (the raw table dataset)
+        └── tokenized_data (the tokenized data used for the experiments)
+    ├── experiment
+        ├── semtab_labels.json (class types)
+        ├── RECA-semtab-test-from-pre-trained.py (directly reproduce the result by running this file)
+        └── RECA-semtab-train+test.py (train the model from scratch)
+    └── pre-process
+        ├── transform_to_json.py (generate base json files from the raw data)
+        ├── NER_extraction.py (NER tagging)
+        ├── pre-process.py (table finding and alignment)
+        ├── make_json_input.py (generate jsonl data)
+        ├── jaccard_filterjson.py (table filtering)
+        └── semtab-datasets.py (generate tokenized data)
+└── WebTables
+    ├── checkpoints
+    ├── data
+        ├── distance-files (store the edit distances)
+        ├── json (store the base json files that contain the table content)
+        ├── jaccard (store the jaccard distance)
+        ├── webtables (the raw table dataset)
+        ├── out (store the pre-process table data)
+        └── tokenized_data (the tokenized data used for the experiments)
+    ├── experiment
+        ├── label_dict.json （class types）
+        └── RECA-webtables-train.py (train the model from scratch)
+    └── pre-process
+        ├── compute_jaccard.py (compute the jaccard distance between tables)
+        ├── pre-process-webtables.py (table finding, alignment, filtering, generate json files)
+        └── webtables-datasets.py (generate tokenized data)
+└── requirements.txt
+
+```
