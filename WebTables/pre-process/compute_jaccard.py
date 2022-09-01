@@ -30,7 +30,7 @@ def compute_jaccard(pathways, cur_path="../data/webtables/K4/"): # compute the j
         for file_name in os.listdir(pathway):
             file_path = pathway + file_name
             table_content[pathway[-3:]+file_name] = read_tables(file_path)
-    for file_name in os.listdir(pathway):
+    for file_name in os.listdir(cur_path):
         file_path = cur_path+file_name
         K4_content[cur_path[-3:]+file_name] = read_tables(file_path)
     total_length = len(table_content)
