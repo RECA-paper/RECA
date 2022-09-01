@@ -22,7 +22,7 @@ def read_tables(path): # load table content
             cur_set += line
     return list(set(cur_set))
 
-def compute_jaccard(pathways, cur_path="../data/webtables/K4/"): # compute the jaccard distance between any two table schemata
+def compute_jaccard(pathways, cur_path="../data/webtables/K4/"): # compute the jaccard distance between any two tables
     table_content = {}
     K4_content = {}
     jaccard_dict = {}
