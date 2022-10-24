@@ -59,24 +59,24 @@ def load_file(data_path, label_dict):
 class TableDataset(Dataset): # Generate tabular dataset
     def __init__(self, target_cols, tokenizer, rel_cols, sub_rel_cols, labels):
         self.labels = []
-        self.target_cols = []
+        self.data = []
         self.tokenizer = tokenizer
-        self.rel_cols = []
-        self.sub_rel_cols = []
+        self.rel = []
+        self.sub = []
         for i in trange(len(labels)):
             self.labels.append(torch.tensor(labels[i]))
             target_token_ids = self.tokenize(target_cols[i])
-            self.target_cols.append(target_token_ids)
+            self.data.append(target_token_ids)
             if len(rel_cols[i]) == 0: # If there is no related tables, use the target column content
                 rel_token_ids = target_token_ids
             else:
                 rel_token_ids = self.tokenize_set_equal(rel_cols[i])
-            self.rel_cols.append(rel_token_ids)
+            self.rel.append(rel_token_ids)
             if len(sub_rel_cols[i]) == 0: # If there is no sub-related tables, use the target column content
                 sub_token_ids = target_token_ids
             else:
                 sub_token_ids = self.tokenize_set_equal(sub_rel_cols[i])
-            self.sub_rel_cols.append(sub_token_ids)
+            self.sub.append(sub_token_ids)
         
     def tokenize(self, col): # Normal practice of tokenization
         text = ''
@@ -114,7 +114,7 @@ class TableDataset(Dataset): # Generate tabular dataset
         return ids
 
     def __getitem__(self, idx):
-        return self.target_cols[idx], self.rel_cols[idx], self.sub_rel_cols[idx], self.labels[idx]
+        return self.data[idx], self.rel[idx], self.sub[idx], self.labels[idx]
 
     def __len__(self):
         return len(self.labels)
