@@ -43,15 +43,16 @@ def generate_base_json():
             table_file = table_dir+file_name
             json_file = out_dir+str(i)+'.json'
             header, content, num_col, num_row, num_cell = read_csv(table_file)
-            dict = {}
-            dict['filename'] = file_name[:-4]
-            dict['headers'] = header
-            dict['content'] = content
-            dict['target'] = target_col
-            dict['label'] = label
-            with open(json_file, 'w') as out_json:
-                json.dump(dict, out_json)
-            i += 1
+            for j in range(num_col):
+                dict = {}
+                dict['filename'] = file_name[:-4]
+                dict['headers'] = header
+                dict['content'] = content
+                dict['target'] = j
+                dict['label'] = header[j].lower()
+                with open(json_file, 'w') as out_json:
+                    json.dump(dict, out_json)
+                i += 1
 
 def read_tables(path): # load table content
     csv_reader = csv.reader(open(path))
