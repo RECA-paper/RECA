@@ -109,16 +109,16 @@ def get_loader(path, batch_size, is_train): # Generate the dataloaders for the t
     loader.num = len(dataset)
     return loader
 
-class KREL(torch.nn.Module): # KREL model structure
-    def __init__(self, n_classes=78, dim_k=768, dim_v=768):
+class KREL(torch.nn.Module):
+    def __init__(self, n_classes=78):
         super(KREL, self).__init__()
         self.model_name = 'KREL'
-        self.bert_model = BertModel.from_pretrained("bert-base-uncased") # BERT encoder
-        self.dropout = torch.nn.Dropout(0.3) # Dropout layer
-        self.fcc_tar = torch.nn.Linear(768, n_classes) # linear layer
+        self.bert_model = BertModel.from_pretrained("bert-base-uncased")
+        self.dropout = torch.nn.Dropout(0.3)
+        self.fcc_tar = torch.nn.Linear(768, n_classes)
         self.fcc_rel = torch.nn.Linear(768, n_classes)
         self.fcc_sub = torch.nn.Linear(768, n_classes)
-        self.weights = torch.nn.ParameterList([torch.nn.Parameter(torch.randn(1)) for i in range(3)]) # Weighted combination
+        self.weights = torch.nn.ParameterList([torch.nn.Parameter(torch.randn(1)) for i in range(3)])
 
     def encode(self, target_ids, rel_ids, sub_ids):
         att_tar = (target_ids>0)
