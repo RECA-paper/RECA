@@ -128,8 +128,7 @@ class TableDataset(Dataset): # Generate tabular dataset
 
 
 if __name__ == '__main__':
-    train_ratio = False # False means use the full dataset to train the model by default set it to false
-    if not train_ratio:
+    if True:
         setup_seed(20)
         data_path_train = '../data/jsonl_data/train_val_hard_jaccard_ranking.jsonl'
         data_path_test = '../data/jsonl_data/test_hard_jaccard_ranking.jsonl'
@@ -166,66 +165,4 @@ if __name__ == '__main__':
                 torch.save(ds_df_v, '../data/tokenized_data/valid_'+str(MAX_LEN)+'_fold_'+str(cur_fold))
         ds_df_t = TableDataset(test_data, test_rel, test_sub, Tokenizer, test_labels)
         torch.save(ds_df_t, '../data/tokenized_data/test_'+str(MAX_LEN))
-    else:
-        setup_seed(20)
-        data_path_train = '../data/jsonl_data/train_val_hard_jaccard_ranking.jsonl'
-        data_path_test = '../data/jsonl_data/test_hard_jaccard_ranking.jsonl'
-        label_dict = get_label_dict()
-        train_data, train_rel,train_sub, train_labels = load_file(data_path_train, label_dict)
-        #test_data, test_rel,test_sub, test_labels = load_file(data_path_test, label_dict)
-        Tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-        sfolder_cv = StratifiedKFold(n_splits=5, random_state = 0, shuffle=True)
-        ratio_folder = StratifiedKFold(n_splits=4, random_state = 0, shuffle=True)
-        half_folder = StratifiedKFold(n_splits=2, random_state = 0, shuffle=True)
-        for cur_fold, (train_idx, val_idx) in enumerate(sfolder_cv.split(train_data, train_labels)):
-            if True:
-                print('start loading data')
-                train_cols = []
-                train_labels_splited = []
-                train_rels = []
-                train_subs = []
-
-                for t_idx in train_idx:
-                    train_cols.append(train_data[t_idx])
-                    train_rels.append(train_rel[t_idx])
-                    train_subs.append(train_sub[t_idx])
-                    train_labels_splited.append(train_labels[t_idx])
-                train_cols_75 = []
-                train_labels_splited_75 = []
-                train_rels_75 = []
-                train_subs_75 = []
-                train_cols_25 = []
-                train_labels_splited_25 = []
-                train_rels_25 = []
-                train_subs_25 = []
-                for cur_set, (idx_75, idx_25) in enumerate(ratio_folder.split(train_cols, train_labels_splited)):
-                    for t_idx_75 in idx_75:
-                        train_cols_75.append(train_cols[t_idx_75])
-                        train_rels_75.append(train_rels[t_idx_75])
-                        train_subs_75.append(train_subs[t_idx_75])
-                        train_labels_splited_75.append(train_labels_splited[t_idx_75])
-                    for t_idx_25 in idx_25:
-                        train_cols_25.append(train_cols[t_idx_25])
-                        train_rels_25.append(train_rels[t_idx_25])
-                        train_subs_25.append(train_subs[t_idx_25])
-                        train_labels_splited_25.append(train_labels_splited[t_idx_25])
-                    break
-                train_cols_50 = []
-                train_labels_splited_50 = []
-                train_rels_50 = []
-                train_subs_50 = []
-                for cur_set, (idx_50, _) in enumerate(half_folder.split(train_cols, train_labels_splited)):
-                    for t_idx_50 in idx_50:
-                        train_cols_50.append(train_cols[t_idx_50])
-                        train_rels_50.append(train_rels[t_idx_50])
-                        train_subs_50.append(train_subs[t_idx_50])
-                        train_labels_splited_50.append(train_labels_splited[t_idx_50])
-                    break
-                
-                ds_df_75 = TableDataset(train_cols_75, train_rels_75, train_subs_75, Tokenizer, train_labels_splited_75)
-                torch.save(ds_df_75, '../data/tokenized_data/percentage/train_75'+str(MAX_LEN)+'_fold_'+str(cur_fold))
-                ds_df_25 = TableDataset(train_cols_25, train_rels_25, train_subs_25, Tokenizer, train_labels_splited_25)
-                torch.save(ds_df_25, '../data/tokenized_data/percentage/train_25'+str(MAX_LEN)+'_fold_'+str(cur_fold))
-                ds_df_50 = TableDataset(train_cols_50, train_rels_50, train_subs_50, Tokenizer, train_labels_splited_50)
-                torch.save(ds_df_50, '../data/tokenized_data/percentage/train_50'+str(MAX_LEN)+'_fold_'+str(cur_fold))
-                
+    
