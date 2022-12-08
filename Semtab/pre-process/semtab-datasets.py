@@ -137,7 +137,6 @@ if __name__ == '__main__':
         test_data, test_rel,test_sub, test_labels = load_file(data_path_test, label_dict)
         Tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
         sfolder_cv = StratifiedKFold(n_splits=5, random_state = 0, shuffle=True)
-        ratio_folder = StratifiedKFold(n_splits=4, random_state = 0, shuffle=True)
         for cur_fold, (train_idx, val_idx) in enumerate(sfolder_cv.split(train_data, train_labels)):
             if True:
                 print('start loading data')
